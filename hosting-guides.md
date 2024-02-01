@@ -26,3 +26,13 @@ DB_HOST="ep-lucky-star-a18w11n9.ap-southeast-1.aws.neon.tech"
 
 
 // Backend Hosting
+
+Start Script changing for server
+
+cross-env npm run build && medusa start
+To
+"start": "npm run build && medusa migrations run && medusa start"
+
+moved admin to dev dependency
+
+medusa-config.js file changing in documentation
