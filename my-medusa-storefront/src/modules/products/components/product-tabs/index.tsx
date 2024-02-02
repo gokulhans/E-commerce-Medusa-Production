@@ -26,7 +26,6 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <div className="w-full">
-      {/* @ts-expect-error Server Component */}
       <Accordion type="multiple">
         {tabs.map((tab, i) => (
           <Accordion.Item
