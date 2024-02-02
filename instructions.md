@@ -47,3 +47,20 @@ line 59
 
 
       Accodion Commented
+
+29 index 
+       {/* <Accordion type="multiple">
+        {tabs.map((tab, i) => (
+          <Accordion.Item
+            key={i}
+            title={tab.label}
+            headingSize="medium"
+            value={tab.label}
+          >
+            {tab.component}
+          </Accordion.Item>
+        ))}
+      </Accordion> */}
+
+
+// import Accordion from "./accordion"
