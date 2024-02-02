@@ -32,6 +32,8 @@ const Accordion: React.FC<AccordionProps> & {
   )
 }
 
+const AccordionHeader = AccordionPrimitive.Header;
+
 const Item: React.FC<AccordionItemProps> = ({
   title,
   subtitle,
@@ -54,8 +56,7 @@ const Item: React.FC<AccordionItemProps> = ({
         className
       )}
     >
-      /* @ts-expect-error Server Component */
-      <AccordionPrimitive.Header className="px-1">
+      <AccordionHeader className="px-1">
         <div className="flex flex-col">
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center gap-4">
@@ -71,7 +72,7 @@ const Item: React.FC<AccordionItemProps> = ({
             </Text>
           )}
         </div>
-      </AccordionPrimitive.Header>
+      </AccordionHeader>
       <AccordionPrimitive.Content
         forceMount={forceMountContent}
         className={clx(
