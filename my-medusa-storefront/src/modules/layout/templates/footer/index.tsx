@@ -1,163 +1,89 @@
-import { Text, clx } from "@medusajs/ui"
 
-import { getCategoriesList, getCollectionsList } from "@lib/data"
-
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "../../components/medusa-cta"
-
-const fetchCollections = async () => {
-  const { collections } = await getCollectionsList()
-  return collections
-}
-
-const fetchCategories = async () => {
-  const { product_categories } = await getCategoriesList()
-  return product_categories
-}
-
-export default async function Footer() {
-  const productCollections = await fetchCollections().then(
-    (collections) => collections
-  )
-  const productCategories = await fetchCategories().then(
-    (categories) => categories
-  )
+export default async function  Footer () {
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            >
-              Medusa Store
-            </LocalizedClientLink>
-          </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {productCategories && productCategories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul className="grid grid-cols-1 gap-2">
-                  {productCategories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
-
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
-                    return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
-                          href={`/categories/${c.handle}`}
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )}
-            {productCollections && productCollections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (productCollections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {productCollections?.slice(0, 6).map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/collections/${c.handle}`}
-                      >
-                        {c.title}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+      <footer className="bg-gray-100 rounded-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <img
+                alt="Logo"
+                className="h-16 w-16"
+                height="64"
+                src={'https://raw.githubusercontent.com/sreenath256/Helah/master/src/assets/Group12.png'}
+                style={{
+                  aspectRatio: "64/64",
+                  objectFit: "contain",
+                }}
+                width="64"
+              />
+              <h2 className="mt-2 text-[35px] text-[#2C2C2C]">Here your imitate collection</h2>
+            </div>
+            <div>
+              <h3 className="text-[22px] text-[#2C2C2C] font-semibold mb-4">Quick links</h3>
+              <ul className="space-y-2">
                 <li>
-                  <a
-                    href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    GitHub
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Home
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Documentation
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Collections
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="https://github.com/medusajs/nextjs-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-ui-fg-base"
-                  >
-                    Source code
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    About us
+                  </a>
+                </li>
+                <li>
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Contact us
                   </a>
                 </li>
               </ul>
             </div>
+            <div className='border-r border-r-[#777777]'>
+              <h3 className="text-[22px] text-[#2C2C2C] font-semibold mb-4">Quick links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Customer support
+                  </a>
+                </li>
+                <li>
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Terms & conditions
+                  </a>
+                </li>
+                <li>
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Exchange
+                  </a>
+                </li>
+                <li>
+                  <a className="text-[#777777] font-Inter hover:text-gray-800" href="#">
+                    Shipping & delivery
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-[30px] text-[#2C2C2C] mb-4">Get in touch</h3>
+              <p className="mb-4 text-[#777777] font-Inter">Get up to 20% discount on your first order!</p>
+              <form className="flex">
+                <input
+                  className="px-4 py-2 focus:outline-none rounded-full "
+                  placeholder="Enter your email"
+                  type="email"
+                />
+                <button className="px-4 py-2 bg-gray-800 text-white rounded-r-md hover:bg-gray-700" type="submit">
+                  Send
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
-          </Text>
-          <MedusaCTA />
-        </div>
-      </div>
-    </footer>
-  )
+      </footer>
+    )
 }
